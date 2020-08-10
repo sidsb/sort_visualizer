@@ -1,0 +1,16 @@
+.array-conatiner {
+  position: absolute;
+  left: 70px;
+  height: 80vh;
+}
+
+.array-bar {
+  width: 2px;
+  background-color: rgb(67, 224, 230);
+  display: inline-block;
+  margin: 5px 1px;
+}
+
+.btn-group {
+  margin-left: 200px;
+}

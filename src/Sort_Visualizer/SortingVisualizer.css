@@ -21,8 +21,8 @@
 .slidecontainer {
   background: rgb(53, 53, 66);
   color: aquamarine;
-  height: 40%;
-  padding: 0.5em;
+  height: 75px;
+  padding: 5px;
   border-radius: 2em;
   margin-left: 80px;
 }

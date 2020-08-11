@@ -8,10 +8,9 @@ import { bubbleSort as bubbleSortAlgo } from '../Algorithms/bubble.jsx';
 import { quickSort as quickSortAlgo } from '../Algorithms/quickSort.jsx';
 
 // Change this value for the speed of the animations.
-const ANIMATION_SPEED_MS = 1;
+const ANIMATION_SPEED_MS = 310;
 
-// Change this value for the number of bars (value) in the array.
-const NUMBER_OF_ARRAY_BARS = 310;
+
 
 // This is the main color of the array bars.
 const PRIMARY_COLOR = 'turquoise';
@@ -24,7 +23,8 @@ export class SortingVisualizer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            array: []
+            array: [],
+            NUMBER_OF_ARRAY_BARS: 310
         }
     }
     componentDidMount() {
@@ -33,7 +33,7 @@ export class SortingVisualizer extends Component {
 
     resetArray() {
         const array = [];
-        for (let i = 0; i < NUMBER_OF_ARRAY_BARS; ++i) {
+        for (let i = 0; i < this.state.NUMBER_OF_ARRAY_BARS; ++i) {
             array.push(genrandom(3, 500));
             //pushing a random number
 
@@ -56,13 +56,13 @@ export class SortingVisualizer extends Component {
                 setTimeout(() => {
                     barOneStyle.backgroundColor = color;
                     barTwoStyle.backgroundColor = color;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * ANIMATION_SPEED_MS / this.state.NUMBER_OF_ARRAY_BARS);
             } else {
                 setTimeout(() => {
                     const [barOneIdx, newHeight] = animations[i];
                     const barOneStyle = arrayBars[barOneIdx].style;
                     barOneStyle.height = `${newHeight}px`;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * ANIMATION_SPEED_MS / this.state.NUMBER_OF_ARRAY_BARS);
             }
         }
     }
@@ -80,13 +80,13 @@ export class SortingVisualizer extends Component {
                 setTimeout(() => {
                     barOneStyle.backgroundColor = color;
                     barTwoStyle.backgroundColor = color;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * ANIMATION_SPEED_MS / this.state.NUMBER_OF_ARRAY_BARS);
             } else {
                 setTimeout(() => {
                     const [barOneIdx, newHeight] = animations[i];
                     const barOneStyle = arrayBars[barOneIdx].style;
                     barOneStyle.height = `${newHeight}px`;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * ANIMATION_SPEED_MS / this.state.NUMBER_OF_ARRAY_BARS);
             }
         }
     }
@@ -104,13 +104,13 @@ export class SortingVisualizer extends Component {
                 setTimeout(() => {
                     barOneStyle.backgroundColor = color;
                     barTwoStyle.backgroundColor = color;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * ANIMATION_SPEED_MS / this.state.NUMBER_OF_ARRAY_BARS);
             } else {
                 setTimeout(() => {
                     const [barOneIdx, newHeight] = animations[i];
                     const barOneStyle = arrayBars[barOneIdx].style;
                     barOneStyle.height = `${newHeight}px`;
-                }, i * ANIMATION_SPEED_MS);
+                }, i * ANIMATION_SPEED_MS / this.state.NUMBER_OF_ARRAY_BARS);
             }
         }
     }
@@ -128,15 +128,20 @@ export class SortingVisualizer extends Component {
                 setTimeout(() => {
                     barOneStyle.backgroundColor = color;
                     barTwoStyle.backgroundColor = color;
-                }, i * ANIMATION_SPEED_MS / 2);
+                }, i * ANIMATION_SPEED_MS / this.state.NUMBER_OF_ARRAY_BARS / 2);
             } else {
                 setTimeout(() => {
                     const [barOneIdx, newHeight] = animations[i];
                     const barOneStyle = arrayBars[barOneIdx].style;
                     barOneStyle.height = `${newHeight}px`;
-                }, i * ANIMATION_SPEED_MS / 2);
+                }, i * ANIMATION_SPEED_MS / this.state.NUMBER_OF_ARRAY_BARS / 2);
             }
         }
+    }
+
+    handleChange(e) {
+        this.setState({ NUMBER_OF_ARRAY_BARS: e.target.value });
+        this.resetArray();
     }
 
     render() {
@@ -152,6 +157,10 @@ export class SortingVisualizer extends Component {
                         <Button className="btn btn-lg btn-info" onClick={() => this.quickSort()}>Quick Sort</Button>
                         <Button className="btn btn-lg btn-dark" onClick={() => this.bubbleSort()}>Bubble Sort</Button>
                     </div>
+                    <div className="slidecontainer">
+                        <p>Change Array size and speed</p>
+                        <input type="range" min="10" max="310" value={this.state.NUMBER_OF_ARRAY_BARS} name='val_blur' className="slider" onChange={(e) => { this.handleChange(e) }} />
+                    </div>
                 </div>
                 <div className="array-conatiner">
                     {array.map((value, idx) => (
@@ -159,7 +168,7 @@ export class SortingVisualizer extends Component {
                             className="array-bar"
                             key={idx}
                             style={{
-                                height: `${value}px`
+                                height: `${value}px`, width: `${620 / this.state.NUMBER_OF_ARRAY_BARS}px`
                             }}>
                         </div>
                     ))}

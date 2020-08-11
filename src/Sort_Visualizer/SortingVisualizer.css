@@ -11,10 +11,6 @@
   margin: 5px 1px;
 }
 
-.breadcrumb {
-  display: inline;
-}
-
 .btn-group {
   margin-left: 200px;
 }
@@ -23,39 +19,18 @@
   color: aquamarine;
   height: 75px;
   padding: 5px;
-  border-radius: 2em;
+  border-radius: 4%;
   margin-left: 80px;
 }
 
 .slider {
-  -webkit-appearance: none;
   height: 15px;
   border-radius: 5px;
-  background: #d3d3d3;
   outline: none;
   opacity: 0.7;
-  -webkit-transition: 0.2s;
   transition: opacity 0.2s;
 }
 
 .slider:hover {
-  opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #4caf50;
-  cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #4caf50;
-  cursor: pointer;
+  color: brown;
 }

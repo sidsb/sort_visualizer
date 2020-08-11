@@ -10,7 +10,7 @@ function heapify(auxiliaryArray, n, i, animations) {
         largest = r;
     }
 
-    if (largest != i) {
+    if (largest !== i) {
         let tmp = auxiliaryArray[i];
         auxiliaryArray[i] = auxiliaryArray[largest];
         auxiliaryArray[largest] = tmp;
@@ -31,7 +31,7 @@ function heapify(auxiliaryArray, n, i, animations) {
 
 
 function heapSortHelper(n, auxiliaryArray, animations) {
-    for (let i = n / 2; i >= 0; --i) {
+    for (let i = n; i >= 0; --i) {
         heapify(auxiliaryArray, n, i, animations);
     }
 
